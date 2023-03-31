@@ -12,7 +12,7 @@
  - ransack
 
  ## アプリケーションの実行手順
-  `rails _6.1.7_ new okiraku -d postgresql`  
+  `git clone git@github.com:rrkrgft/okiraku.git`  
   `cd okiraku`  
   `git init`  
   `git add .`  
@@ -21,6 +21,7 @@
   `git checkout -b issues/#1`  
   `git branch`  
   `rails db:create`  
+  `bundle install`
   `rails s`  
 
 ## カタログ設計、テーブル定義書、ワイヤーフレームの共有リンク
