@@ -14,14 +14,9 @@
  ## アプリケーションの実行手順
   `git clone git@github.com:rrkrgft/okiraku.git`  
   `cd okiraku`  
-  `git init`  
-  `git add .`  
-  `git commit -m "railsファイルの作成"`  
-  `git push git@github.com:rrkrgft/okiraku.git master`  
-  `git checkout -b issues/#1`  
-  `git branch`  
   `rails db:create`  
-  `bundle install`
+  `bundle install`  
+  `yarn install`  
   `rails s`  
 
 ## カタログ設計、テーブル定義書、ワイヤーフレームの共有リンク
