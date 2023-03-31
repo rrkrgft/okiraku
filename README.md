@@ -4,7 +4,7 @@
  - ruby 3.0.1
 
 ## 就業Termで学んだ技術
- - device
+ - devise
  - お気に入り機能
 
 ## カリキュラム外技術
@@ -15,6 +15,7 @@
   `git clone git@github.com:rrkrgft/okiraku.git`  
   `cd okiraku`  
   `rails db:create`  
+  `rails db:migrate`   
   `bundle install`  
   `yarn install`  
   `rails s`  
