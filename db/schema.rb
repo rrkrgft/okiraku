@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_04_02_110816) do
+ActiveRecord::Schema.define(version: 2023_04_02_114312) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 2023_04_02_110816) do
     t.text "public"
     t.text "secret"
     t.text "deeply"
-    t.boolean "secret_choice_deep"
+    t.boolean "secret_choice_deep", default: false
     t.bigint "post_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 2023_04_02_110816) do
     t.string "title"
     t.text "image"
     t.integer "score"
-    t.boolean "draft"
+    t.boolean "draft", default: false
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
