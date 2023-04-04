@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  public: MyText
+  secret: MyText
+  deeply: MyText
+  secret_choice_deep: false
+  post: one
+
+two:
+  public: MyText
+  secret: MyText
+  deeply: MyText
+  secret_choice_deep: false
+  post: two
