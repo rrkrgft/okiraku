@@ -1,2 +1,52 @@
-<h1>Posts#show</h1>
-<p>Find me in app/views/posts/show.html.erb</p>
+<h1>嬉しいこと、楽しいことの投稿の詳細</h1>
+
+<table class="table table-hover">
+  <tbody>
+    <tr>
+      <th>タイトル</th>
+      <td><%= @post.title %></td>
+    </tr>
+    <tr>
+      <th>詳細</th>
+      <td><%= @post.detail.public %></td>
+    </tr>
+    <tr>
+      <th>詳細（非公開）</th>
+      <td><%= @post.detail.secret %></td>
+    </tr>
+    <tr>
+      <th>深掘り</th>
+      <td><%= @post.detail.deeply %></td>
+    </tr>
+    <tr>
+      <th>嬉しい度</th>
+      <td><%= @post.score %></td>
+    </tr>
+    <tr>
+      <th>下書き</th>
+      <td><%= @post.draft %></td>
+    </tr>
+    <tr>
+      <th>投稿日時</th>
+      <td><%= @post.created_at %></td>
+    </tr>
+    <tr>
+      <th>更新日時</th>
+      <td><%= @post.updated_at %></td>
+    </tr>
+    <tr>
+      <th>投稿者</th>
+      <td><%= @post.user.id %></td>
+    </tr>
+  </tbody>
+</table>
+<%# if !Favorite.exists?(user: current_user, photo_id: @photo.id) %>
+  <%#= link_to "いいね",photo_favorites_path(@photo), method: :post, class: "btn btn-primary" %>
+<%# else %>
+  <%#= link_to "いいね解除",photo_favorites_path(@photo), method: :delete, class: "btn btn-danger" %>
+<%# end %>
+
+<% if current_user.id == @post.user.id %>
+  <%= link_to "編集", edit_post_path(@post.id), class: "btn btn-secondary" %>
+  <%= link_to "削除", post_path(@post.id), method: :delete ,data: { confirm: '本当に削除していいですか'}, class: "btn btn-danger mx-3" %>
+<% end %>
