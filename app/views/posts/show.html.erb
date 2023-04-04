@@ -44,7 +44,7 @@
     </tr>
     <tr>
       <th>投稿者</th>
-      <td><%= @post.user.id %></td>
+      <td><%= @post.user.name %></td>
     </tr>
   </tbody>
 </table>
@@ -54,7 +54,7 @@
   <%#= link_to "いいね解除",photo_favorites_path(@photo), method: :delete, class: "btn btn-danger" %>
 <%# end %>
 
-<% if current_user.id == @post.user.id %>
+<% if current_user == @post.user %>
   <%= link_to "編集", edit_post_path(@post.id), class: "btn btn-secondary" %>
   <%= link_to "削除", post_path(@post.id), method: :delete ,data: { confirm: '本当に削除していいですか'}, class: "btn btn-danger mx-3" %>
 <% end %>
