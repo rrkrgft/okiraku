@@ -26,11 +26,18 @@ class PostsController < ApplicationController
   end
 
   def update
+    set_post
     if @post.update
       redirect_to posts_path, notice: "編集しました"
     else
       render :edit, notice: "編集エラーです"
     end
+  end
+
+  def destroy
+    set_post
+    @post.destroy
+    redirect_to posts_path, notice: "投稿を削除しました"
   end
 
   private
