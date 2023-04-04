@@ -13,16 +13,6 @@ class PostsController < ApplicationController
     end
   end
 
-  # def create
-  #   @post = Post.create(post_params)
-  #   @post.user_id = current_user.id
-  #   if @post.save
-  #     redirect_to posts_path, notice: "登録しました"
-  #   else
-  #     render :new, notice: "登録エラーです"
-  #   end
-  # end
-
   def index
     @posts = Post.all
   end
@@ -32,7 +22,15 @@ class PostsController < ApplicationController
   end
 
   def edit
-    
+    set_post
+  end
+
+  def update
+    if @post.update
+      redirect_to posts_path, notice: "編集しました"
+    else
+      render :edit, notice: "編集エラーです"
+    end
   end
 
   private
