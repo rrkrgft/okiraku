@@ -22,7 +22,7 @@ class LabelsController < ApplicationController
 
   def update
     set_label
-    if @label.update
+    if @label.update(label_params)
       redirect_to labels_path, notice: "ラベルを編集しました"
     else
       render :edit, notice: "ラベルの編集エラーです"
