@@ -13,13 +13,34 @@ class LabelsController < ApplicationController
   end
 
   def index
+    @labels = current_user.labels
   end
 
   def edit
+    set_label
+  end
+
+  def update
+    set_label
+    if @label.update
+      redirect_to labels_path, notice: "ラベルを編集しました"
+    else
+      render :edit, notice: "ラベルの編集エラーです"
+    end
+  end
+
+  def destroy
+    set_label
+    @label.destroy
+    redirect_to labels_path, notice: "ラベルを削除しました"
   end
 
   private
   def label_params
     params.require(:label).permit(:name)
+  end
+
+  def set_label
+    @label = current_user.labels.find(params[:id])
   end
 end
