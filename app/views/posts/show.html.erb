@@ -10,17 +10,25 @@
       <th>詳細</th>
       <td><%= @post.detail.public %></td>
     </tr>
-    <tr>
-      <th>詳細（非公開）</th>
-      <td><%= @post.detail.secret %></td>
-    </tr>
-    <tr>
-      <th>深掘り</th>
-      <td><%= @post.detail.deeply %></td>
-    </tr>
+    <% if current_user == @post.user %>
+      <tr>
+        <th>詳細（非公開）</th>
+        <td><%= @post.detail.secret %></td>
+      </tr>
+    <% end %>
+    <% if current_user == @post.user || !@post.detail.secret_choice_deep %>
+      <tr>
+        <th>非公開</th>
+        <td><%= @post.detail.secret_choice_deep %></td>
+      </tr>
+      <tr>
+        <th>深掘り</th>
+        <td><%= @post.detail.deeply %></td>
+      </tr>
+    <% end %>
     <tr>
       <th>嬉しい度</th>
-      <td><%= @post.score %></td>
+      <td><%= @post.score %>％</td>
     </tr>
     <tr>
       <th>下書き</th>

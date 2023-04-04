@@ -27,7 +27,7 @@ class PostsController < ApplicationController
 
   def update
     set_post
-    if @post.update
+    if @post.update(post_params)
       redirect_to posts_path, notice: "編集しました"
     else
       render :edit, notice: "編集エラーです"
@@ -43,10 +43,6 @@ class PostsController < ApplicationController
   private
   def post_params
     params.require(:post).permit(:title, :score, :image, :draft, detail_attributes: [:public, :secret, :deeply, :secret_choice_deep, :_destroy, :id])
-  end
-
-  def detail_params
-    params.require(:post).permit(detail: [:public, :secret, :deeply, :secret_choice_deep, :_destroy, :id])
   end
 
   def set_post
