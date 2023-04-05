@@ -1,0 +1,35 @@
+<h1>ユーザー投稿一覧</h1>
+
+<div class="mb-3">
+  <table class="table table-hover">
+    <thead class="tehad-default">
+      <tr>
+        <th>タイトル</th>
+        <th>詳細</th>
+        <th>詳細（非公開）</th>
+        <th>深掘り</th>
+        <th>嬉しい度</th>
+        <th>下書き</th>
+        <th>投稿日</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @posts.each do |p| %>
+        <tr>
+          <td><%= link_to p.title, post_path(p.id),class: "task_row" %></td>
+          <td><%= p.detail.public.truncate(24) %></td>
+          <td><%= p.detail.secret.truncate(24) %></td>
+          <td><%= p.detail.deeply.truncate(15) %></td>
+          <td><%= p.score %>％</td>
+          <td><%= p.draft ? '下書き' : '公開中' %></td>
+          <td><%= p.created_at.strftime('%Y/%m/%d') %></td>
+          <td><%= link_to "編集", edit_post_path(p.id), class: "btn btn-outline-secondary" %>
+          <%= link_to "削除", post_path(p.id), method: :delete, class: "btn btn-danger", data: { confirm: '本当に削除していいですか' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%#= paginate @posts %>
+</div>
+  <%= link_to "新規登録", new_post_path, class: "btn btn-primary" %>

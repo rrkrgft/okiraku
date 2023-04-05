@@ -1,0 +1,32 @@
+ja:
+  activerecord:
+    models:
+      post: 投稿
+      user: ユーザー
+      favorite: お気に入り
+      label: ラベル
+      detail: 詳細
+    attributes:
+      post:
+        title: タイトル
+        image: 写真
+        score: 嬉しい度
+        draft: 下書き
+      user:
+        name: 名前
+        email: メールアドレス
+        current_password: 現在のパスワード
+        password: パスワード
+        password_confirmation: 確認用パスワード
+        remember_me: ログインを記憶
+        admin: 管理者権限
+      session:
+        email: メールアドレス
+        password: パスワード
+      label:
+        name: ラベル名
+      detail:
+        public: 詳細
+        secret: 詳細（非公開）
+        deeply: 深掘り
+        secret_choice_deep: 非公開（深掘り）
