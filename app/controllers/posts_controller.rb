@@ -6,6 +6,7 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.build(post_params)
+    binding.pry
     if @post.save
       redirect_to posts_path, notice: "登録しました"
     else
