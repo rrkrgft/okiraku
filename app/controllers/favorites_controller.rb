@@ -10,4 +10,9 @@ class FavoritesController < ApplicationController
     favorite.destroy
     redirect_back(fallback_location: root_path, notice: "お気に入りの解除をしました")
   end
+
+  def index
+    favorites = Favorite.where(user_id: current_user.id).pluck(:post_id)
+    @posts = Post.where(id: favorites)
+  end
 end
