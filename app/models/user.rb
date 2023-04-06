@@ -19,4 +19,12 @@ class User < ApplicationRecord
     Label.create([{user_id: user_id, name: "趣味"},{user_id: user_id, name: "食事"},{user_id: user_id, name: "仕事"},{user_id: user_id, name: "遊び"}])
     # admin権限で初期登録のラベルを変更できるようにする
   end
+
+  def self.ransackable_attributes(auth_object = nil)
+    ["name", "admin"]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    ["posts", "details", "labels"]
+  end
 end

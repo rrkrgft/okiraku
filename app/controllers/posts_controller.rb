@@ -16,7 +16,12 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all
+    set_q
+    if params[:q]
+      @posts = @q.result
+    else
+      @posts = Post.all
+    end    
   end
 
   def show
@@ -49,5 +54,9 @@ class PostsController < ApplicationController
 
   def set_post
     @post = Post.find(params[:id])
+  end
+
+  def set_q
+    @q = Post.ransack(params[:q])
   end
 end

@@ -18,8 +18,8 @@
     <% end %>
     <% if current_user == @post.user || !@post.detail.secret_choice_deep %>
       <tr>
-        <th>非公開</th>
-        <td><%= @post.detail.secret_choice_deep %></td>
+        <th>深掘りの公開</th>
+        <td><%= @post.detail.secret_choice_deep ? "非公開" : "公開" %></td>
       </tr>
       <tr>
         <th>深掘り</th>
@@ -32,7 +32,7 @@
     </tr>
     <tr>
       <th>下書き</th>
-      <td><%= @post.draft %></td>
+      <td><%= @post.draft ? "下書き" : "公開"  %></td>
     </tr>
     <% if current_user == @post.user %>
       <tr>
@@ -65,3 +65,4 @@
     <%= link_to "お気に入り解除",favorite_path(@post), method: :delete, class: "btn btn-danger" %>
   <% end %>
 <% end %>
+<%= link_to "戻る", :back , class: "btn btn-secondary" %>

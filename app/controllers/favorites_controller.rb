@@ -12,7 +12,17 @@ class FavoritesController < ApplicationController
   end
 
   def index
+    set_q
     favorites = Favorite.where(user_id: current_user.id).pluck(:post_id)
-    @posts = Post.where(id: favorites)
+    if params[:q]
+      @posts = @q.result.where(id: favorites).where(draft: false)
+    else
+      @posts = Post.where(id: favorites).where(draft: false)
+    end
+  end
+
+  private
+  def set_q
+    @q = Post.ransack(params[:q])
   end
 end
