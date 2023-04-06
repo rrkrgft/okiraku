@@ -1,9 +1,10 @@
 class UsersController < ApplicationController
   def index
     set_q
-    @posts = Post.where(user_id: current_user.id)
     if params[:q]
-      @posts = @q.result
+      @posts = @q.result.where(user_id: current_user.id)
+    else
+      @posts = Post.where(user_id: current_user.id)
     end
   end
 
