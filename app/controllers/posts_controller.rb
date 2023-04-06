@@ -17,10 +17,11 @@ class PostsController < ApplicationController
 
   def index
     set_q
-    @posts = Post.all
     if params[:q]
       @posts = @q.result
-    end
+    else
+      @posts = Post.all
+    end    
   end
 
   def show
