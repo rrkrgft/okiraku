@@ -52,6 +52,14 @@
       <th>投稿者</th>
       <td><%= @post.user.name %></td>
     </tr>
+    <tr>
+      <th>画像</th>
+      <td><% if @post.images.attached? %>
+        <% @post.images.each do |image| %>
+          <%= image_tag image.variant(resize_to_limit: [100, 100]) %>
+        <% end %>
+      <% end %></td>
+    </tr>
   </tbody>
 </table>
 
