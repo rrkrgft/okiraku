@@ -43,10 +43,8 @@
     <% end %>
   </div>
   <div class="form-group mt-2">
-    <%= post.label :image %>
-    <%= image_tag(@post.image.url) if @post.image && @post.image.url %>
-    <%= post.file_field :image %>
-    <%= post.hidden_field :image_cache %>
+    <%= post.label :images %>
+    <%= post.file_field :images, multiple: true, direct_upload: true %>
   </div>
   <%= post.submit "登録", class: "btn btn-primary mt-4" %>
   <%= post.submit "下書き", class: "btn btn-secondary mt-4" %>

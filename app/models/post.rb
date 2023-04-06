@@ -8,6 +8,7 @@ class Post < ApplicationRecord
   has_many :users, through: :favorites, dependent: :destroy
   has_one :detail, dependent: :destroy
   accepts_nested_attributes_for :detail, allow_destroy: true
+  has_many_attached :images
 
   private
   def self.ransackable_attributes(auth_object = nil)

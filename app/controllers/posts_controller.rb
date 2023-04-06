@@ -49,7 +49,7 @@ class PostsController < ApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:title, :score, :image, :draft, detail_attributes: [:public, :secret, :deeply, :secret_choice_deep, :_destroy, :id], label_ids: [] )
+    params.require(:post).permit(:title, :score, :draft, detail_attributes: [:public, :secret, :deeply, :secret_choice_deep, :_destroy, :id], label_ids: [] , images: [])
   end
 
   def set_post
