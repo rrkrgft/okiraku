@@ -11,7 +11,7 @@
     <thead class="tehad-default">
       <tr>
         <th><%= sort_link(@q, :title, "タイトル") %></th>
-        <th><%= sort_link(@q, :score, "嬉しい度") %></th>
+        <th><%= sort_link(@q, :score, "嬉しい度", default_order: :desc ) %></th>
         <th><%= sort_link(@q, :user.name, "投稿者") %></th>
         <th><%= sort_link(@q, :created_at, "投稿日", default_order: :desc ) %></th>
         <th><%= sort_link(@q, :updated_at, "更新日", default_order: :desc ) %></th>
