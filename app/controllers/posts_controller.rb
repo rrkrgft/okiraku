@@ -4,12 +4,13 @@ class PostsController < ApplicationController
   def new
     @post = Post.new
     detail = @post.build_detail
+    session[:previous_url] = request.referer
   end
 
   def create
     @post = current_user.posts.build(post_params)
     if @post.save
-      redirect_to posts_path, notice: "登録しました"
+      redirect_to session[:previous_url], notice: "登録しました"
     else
       render :new, notice: "登録エラーです"
     end
@@ -29,13 +30,14 @@ class PostsController < ApplicationController
   end
 
   def edit
+    session[:previous_url] = request.referer
     set_post
   end
 
   def update
     set_post
     if @post.update(post_params)
-      redirect_to posts_path, notice: "編集しました"
+      redirect_to session[:previous_url], notice: "編集しました"
     else
       render :edit, notice: "編集エラーです"
     end

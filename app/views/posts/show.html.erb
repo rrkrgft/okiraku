@@ -64,7 +64,7 @@
 </table>
 
 <% if current_user == @post.user %>
-  <%= link_to "編集", edit_post_path(@post.id), class: "btn btn-secondary" %>
+  <%= link_to "編集", edit_post_path(@post.id), class: "btn btn-primary" %>
   <%= link_to "削除", post_path(@post.id), method: :delete ,data: { confirm: '本当に削除していいですか'}, class: "btn btn-danger mx-3" %>
 <% else %>
   <% if !Favorite.exists?(user: current_user, post_id: @post.id) %>

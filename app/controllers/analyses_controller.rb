@@ -1,7 +1,48 @@
 class AnalysesController < ApplicationController
   def index
-    # (...データベースからのデータ取得処理...)
-    # ダミーのデータを用意
+    @user = User.find_by(id: current_user.id)
+    # 投稿の一覧とラベルの投稿数を抽出
+    my_labels = Label.where(user_id: current_user.id).pluck(:name)
+    my_posts = Post.where(user_id: current_user.id)
+    my_labels_lists = []
+    post_scores = []
+    my_posts.each do |p|
+      my_labels_lists << p.labels.pluck(:name)
+      post_scores << p
+    end
+    
+    my_labels_lists.flatten!
+    
+    # お気に入りに登録したデータのラベルによる抽出
+    favorites = Favorite.where(user_id: current_user.id).pluck(:post_id)
+    favorite_posts = Post.where(id: favorites).where(draft: false)
+    favorite_labels_lists = []
+    favorite_posts.each do |f|
+      favorite_labels_lists << f.labels.pluck(:name)
+    end
+    favorite_labels_lists.flatten!
+    favorite_labels = favorite_labels_lists.uniq
+    
+    labels = favorite_labels | my_labels
+    
+    favorite_labels_counts = []
+    my_labels_counts = []
+    
+    labels.each do |l|
+      my_labels_counts << my_labels_lists.count(l)
+      favorite_labels_counts << favorite_labels_lists.count(l)
+    end
+
+    # 投稿のラベルと嬉しい度による重みづけによるデータの抽出
+    post_boxs = []
+    post_scores.each do |f|
+      f.labels.pluck(:name).each do |l|
+        post_boxs << [l,(f.score)]
+      end
+    end
+    
+    
+
     months = [ 4, 5, 6, 7, 8, 9 ]
     product_A_sales = [ 1_000_000, 1_200_000, 1_300_000,
       1_400_000, 1_200_000, 1_100_000 ]
@@ -9,12 +50,12 @@ class AnalysesController < ApplicationController
       1_150_000, 1_350_000, 1_600_000 ] 
     # グラフ（チャート）を作成 
     @chart1 = LazyHighCharts::HighChart.new("graph") do |c|
-      c.title(text: "4-9月売上")
+      c.title(text: "ラベルの個数")
       # X軸の名称を設定 '月'
-      c.xAxis(categories: months, title: {text: '月'})       # Y軸の名称を設定 '円'
-      c.yAxis(title: {text: '円'})
-      c.series(name: "A", data: product_A_sales)
-      c.series(name: "B", data: product_B_sales)
+      c.xAxis(categories: my_labels, title: {text: 'ラベル名'})
+      c.yAxis(title: {text: '個数'})
+      c.series(name: "自分の投稿", data: my_labels_counts)
+      c.series(name: "お気に入りの投稿", data: favorite_labels_counts)
       # 判例を右側に配置
      c.legend(align: 'right', verticalAlign: 'top', 
        x: -100, y: 180, layout: 'vertical')
