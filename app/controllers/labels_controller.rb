@@ -1,4 +1,6 @@
 class LabelsController < ApplicationController
+  before_action :authenticate_user!
+
   def new
     @label = Label.new
   end

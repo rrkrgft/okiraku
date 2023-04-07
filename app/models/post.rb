@@ -1,5 +1,6 @@
 class Post < ApplicationRecord
   validates :title, presence: true
+  validates :score, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 100 }
 
   belongs_to :user
   has_many :labelings, dependent: :destroy
