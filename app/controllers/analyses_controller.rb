@@ -41,7 +41,19 @@ class AnalysesController < ApplicationController
       end
     end
     
+    hash_boxs = {}
+    post_boxs.each do |f|
+      if hash_boxs[f[0].intern]
+        hash_boxs[f[0].intern] += f[1]
+      else
+        hash_boxs[f[0].intern] = f[1]
+      end
+    end
     
+    post_dates = []
+    hash_boxs.each do |key,value|
+      post_dates << { name: key.to_s, y: value }
+    end
 
     months = [ 4, 5, 6, 7, 8, 9 ]
     product_A_sales = [ 1_000_000, 1_200_000, 1_300_000,
@@ -64,17 +76,11 @@ class AnalysesController < ApplicationController
     end
 
     @chart2 = LazyHighCharts::HighChart.new("graph") do |c|
-      c.title(text: "製品別上期売上")
+      c.title(text: "ラベル別、嬉しい度による割合")
       c.series({
         colorByPoint: true,
         # ここでは各月の売上額合計をグラフの値とする
-        data: [{
-name: 'A',
-y: product_A_sales.reduce{|sum,e| sum + e}
-}, {
-name: 'B', 
-y: product_B_sales.reduce{|sum,e| sum + e}
-}]
+        data: post_dates
       })
       c.plotOptions(pie: {
         allowPointSelect: true,
