@@ -7,11 +7,11 @@ class User < ApplicationRecord
          
   validates :name, presence: true
 
+  has_many :favorites, dependent: :destroy
+  has_many :posts, through: :favorites, dependent: :destroy
   has_many :posts
   has_many :details, through: :posts
   has_many :labels
-  has_many :favorites, dependent: :destroy
-  has_many :posts, through: :favorites, dependent: :destroy
 
   private
   def make_labels
