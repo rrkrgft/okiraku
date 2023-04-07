@@ -1,4 +1,6 @@
 class FavoritesController < ApplicationController
+  before_action :authenticate_user!
+
   def create
     Favorite.create(user_id: current_user.id, post_id: params[:format])
     redirect_back(fallback_location: root_path, notice: "お気に入りに登録しました")

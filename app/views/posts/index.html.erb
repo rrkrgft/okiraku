@@ -23,7 +23,7 @@
         <% if p.draft == false || p.user.id == current_user.id %>
           <tr>
             <td><%= link_to p.title, post_path(p.id),class: "task_row" %></td>
-            <td><%= p.score %>％</td>
+            <td><% if p.score %><%= p.score %>％<% end %></td>
             <td><%= p.user.name %></td>
             <td><%= p.created_at.strftime('%Y/%m/%d') %></td>
             <td><%= p.updated_at.strftime('%Y/%m/%d') %></td>
