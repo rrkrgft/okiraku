@@ -21,9 +21,9 @@ class PostsController < ApplicationController
   def index
     set_q
     if params[:q]
-      @posts = @q.result
+      @posts = @q.result.page(params[:page])
     else
-      @posts = Post.all
+      @posts = Post.all.page(params[:page])
     end    
   end
 

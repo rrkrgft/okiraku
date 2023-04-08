@@ -44,6 +44,6 @@
       <% end %>
     </tbody>
   </table>
-  <%#= paginate @posts %>
+  <%= paginate @posts, theme: 'bootstrap-5' %>
 </div>
   <%= link_to "新規登録", new_post_path, class: "btn btn-primary" %>
