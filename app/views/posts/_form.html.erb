@@ -33,10 +33,6 @@
     <%= post.range_field :score , in: 0..100, class: "form-range w-25 h-25", id: "range" %>
     <span id="value">50</span>％
   </div>
-  <div class="form-group mt-3">
-    <%= post.label :draft %>
-    <%= post.check_box :draft, {} , "true", "false" %>
-  </div>
   <div class="form-group my-3">
     <% current_user.labels.each do |lab| %>
       <span style="display: inline-block; margin: 4px;">
@@ -49,8 +45,9 @@
     <%= post.label :images %>
     <%= post.file_field :images, multiple: true, direct_upload: true %>
   </div>
+  <%= post.hidden_field :draft, value: false %>
   <div class="mt-4">
-    <%= post.submit "登録", class: "btn btn-primary" %>
+    <%= post.submit "登録", name: "register", class: "btn btn-primary" %>
     <%= post.submit "下書き", class: "btn btn-dark" %>
     <%= link_to "戻る", 'javascript:history.back()' , class: "btn btn-secondary" %>
   </div>

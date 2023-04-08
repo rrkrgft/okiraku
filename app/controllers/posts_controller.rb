@@ -9,6 +9,8 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.build(post_params)
+    binding.pry
+    @post.draft = true if !params[:register]
     if @post.save
       redirect_to session[:previous_url], notice: "登録しました"
     else
