@@ -24,7 +24,7 @@
       <%= detail.text_area :secret , class: "form-control" %>
     </div>
     <div class="form-group mt-2">
-      <%= detail.label :deeply %><span class="ml-3"><%= detail.label :secret_choice_deep, class: "pl-5" %><%= detail.check_box :secret_choice_deep %></span>
+      <%= detail.label :deeply, class: "pull-left" %><span style="display: block; float: right;"><%= detail.check_box :secret_choice_deep %><span style="display: inline-block; margin-left: 10px;"><%= detail.label :secret_choice_deep %></span></span>
       <%= detail.text_area :deeply , class: "form-control" %>
     </div>
   <% end %>
