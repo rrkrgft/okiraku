@@ -9,15 +9,18 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.build(post_params)
-    binding.pry
     @post.draft = true if !params[:register]
     if @post.save
-      redirect_to session[:previous_url], notice: "登録しました"
+      if @post.draft
+        redirect_to session[:previous_url], notice: "下書き登録しました"
+      else
+        redirect_to session[:previous_url], notice: "公開登録しました"
+      end
     else
       render :new, notice: "登録エラーです"
     end
   end
-
+  
   def index
     set_q
     if params[:q]
@@ -26,20 +29,25 @@ class PostsController < ApplicationController
       @posts = Post.all.page(params[:page])
     end    
   end
-
+  
   def show
     set_post
   end
-
+  
   def edit
     session[:previous_url] = request.referer
     set_post
   end
-
+  
   def update
     set_post
+    params[:post][:draft] = true if !params[:register]
     if @post.update(post_params)
-      redirect_to session[:previous_url], notice: "編集しました"
+      if !params[:register]
+        redirect_to session[:previous_url], notice: "下書き編集しました"
+      else
+        redirect_to session[:previous_url], notice: "編集し公開しました"
+      end
     else
       render :edit, notice: "編集エラーです"
     end
