@@ -10,26 +10,28 @@
     </div>
   <% end %>
 
+  <p>記入の仕方がわからない場合はマウスをラベルのところに置いてください</p>
+
   <div class="form-group mt-4">
-    <%= post.label :title %>
+    <%= post.label :title, title: "嬉しかったこと、楽しかったことのタイトルを記入してください" %>
     <%= post.text_field :title, class: "form-control", id: "task_name" %>
   </div>
   <%= post.fields_for :detail do |detail| %>
     <div class="field mt-2">
-      <%= detail.label :public %>
+      <%= detail.label :public, title: "楽しかったこと、嬉しかったことの公表して良い詳細を記入してください" %>
       <%= detail.text_area :public, class: "form-control" %>
     </div>
     <div class="form-group mt-2">
-      <%= detail.label :secret %>
+      <%= detail.label :secret, title: "楽しかったこと、嬉しかったことの公表したくない詳細を記入してください" %>
       <%= detail.text_area :secret , class: "form-control" %>
     </div>
     <div class="form-group mt-2">
-      <%= detail.label :deeply, class: "pull-left" %><span style="display: block; float: right;"><%= detail.check_box :secret_choice_deep %><span style="display: inline-block; margin-left: 10px;"><%= detail.label :secret_choice_deep %></span></span>
+      <%= detail.label :deeply, class: "pull-left", title: "何で楽しい（嬉しい）と感じたのかや、どういう点で楽しい（嬉しい）と感じたのかを記入してください" %><span style="display: block; float: right;"><%= detail.check_box :secret_choice_deep %><span style="display: inline-block; margin-left: 10px;"><%= detail.label :secret_choice_deep, title: "深掘りした内容を公表したくない場合はチェックしてください" %></span></span>
       <%= detail.text_area :deeply , class: "form-control" %>
     </div>
   <% end %>
   <div class="form-group mt-3">
-    <%= post.label :score %>：
+    <%= post.label :score, title: "楽しい（嬉しい）と感じた度合いを％で選んでください" %>：
     <%= post.range_field :score , in: 0..100, class: "form-range w-25 h-25", id: "range" %>
     <span id="value">50</span>％
   </div>
@@ -37,7 +39,7 @@
     <% current_user.labels.each do |lab| %>
       <span style="display: inline-block; margin: 4px;">
         <%= post.check_box :label_ids, { multiple: true }, lab[:id], nil %>
-        <%= post.label :label_ids, lab.name, value: lab[:id], class: "ml-2" %>
+        <%= post.label :label_ids, lab.name, value: lab[:id], class: "ml-2", title: "該当するものを複数選んでください（ラベルは追加可能です）" %>
       </span>
     <% end %>
   </div>
