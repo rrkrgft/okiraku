@@ -16,6 +16,16 @@ class LabelsController < ApplicationController
 
   def index
     @labels = current_user.labels
+    count = @labels.count
+    n = 1
+    @labels.each_slice((count/2.0).ceil) do |l|
+      if n == 1
+        @labels1 = l
+        n += 1
+      else
+        @labels2 = l
+      end
+    end
   end
 
   def edit

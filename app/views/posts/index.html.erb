@@ -1,12 +1,18 @@
-<h1>嬉しいこと、楽しいことの一覧</h1>
+<h1 class="mt-2">嬉しいこと、楽しいことの一覧</h1>
 
-<%= search_form_for @q do |f| %>
-  <%= f.label :title_or_detail_public_or_detail_secret_or_detail_deeply_cont, '検索条件' %>
-  <%= f.search_field :title_or_detail_public_or_detail_secret_or_detail_deeply_cont %>
-  <%= f.submit "検索" %>
-<% end %>
+<div class="d-flex flex-row my-3">
+  <%= search_form_for @q do |f| %>
+    <div class="input-group">
+      <%= f.label :title_or_detail_public_or_detail_secret_or_detail_deeply_cont, '検索条件', class: 'input-group-text' %>
+      <%= f.search_field :title_or_detail_public_or_detail_secret_or_detail_deeply_cont, class: "form-control" %>
+      <div class="input-group-append">
+        <%= f.submit "検索", class: "btn btn-outline-success" %>
+      </div>
+    </div>
+  <% end %>
+</div>
 
-<div class="mb-3">
+<div class="my-3">
   <table class="table table-hover">
     <thead class="tehad-default">
       <tr>
@@ -38,6 +44,6 @@
       <% end %>
     </tbody>
   </table>
-  <%#= paginate @posts %>
+  <%= paginate @posts, theme: 'bootstrap-5' %>
 </div>
   <%= link_to "新規登録", new_post_path, class: "btn btn-primary" %>
