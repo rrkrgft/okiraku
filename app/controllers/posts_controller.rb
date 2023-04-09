@@ -12,9 +12,9 @@ class PostsController < ApplicationController
     @post.draft = true if !params[:register]
     if @post.save
       if @post.draft
-        redirect_to session[:previous_url], notice: "下書き登録しました"
+        redirect_to session[:previous_url] || root_path, notice: "下書き登録しました"
       else
-        redirect_to session[:previous_url], notice: "公開登録しました"
+        redirect_to session[:previous_url] || root_path, notice: "公開登録しました"
       end
     else
       render :new, notice: "登録エラーです"
@@ -44,9 +44,9 @@ class PostsController < ApplicationController
     params[:post][:draft] = true if !params[:register]
     if @post.update(post_params)
       if !params[:register]
-        redirect_to session[:previous_url], notice: "下書き編集しました"
+        redirect_to session[:previous_url] || root_path, notice: "下書き編集しました"
       else
-        redirect_to session[:previous_url], notice: "編集し公開しました"
+        redirect_to session[:previous_url] || root_path, notice: "編集し公開しました"
       end
     else
       render :edit, notice: "編集エラーです"
