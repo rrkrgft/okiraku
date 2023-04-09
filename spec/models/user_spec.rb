@@ -39,4 +39,12 @@ RSpec.describe 'ユーザーモデル機能', type: :model do
       end
     end
   end
+  describe 'ユーザ作成時のラベル作成のテスト' do
+    context 'ユーザーを作成した場合' do
+      it 'ラベルが作成される' do
+        user = User.create(name: 'test', email: 'test@test.com', password: 'password')
+        expect(user.labels.count).to be >= 1
+      end
+    end
+  end
 end

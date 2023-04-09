@@ -16,8 +16,13 @@ class User < ApplicationRecord
   private
   def make_labels
     user_id = self.id
-    Label.create([{user_id: user_id, name: "趣味"},{user_id: user_id, name: "食事"},{user_id: user_id, name: "仕事"},{user_id: user_id, name: "遊び"}])
-    # admin権限で初期登録のラベルを変更できるようにする
+    initial_labels = %w(趣味 仕事 自己学習 遊び スポーツ 読書 映画 ドラマ 料理 散歩 登山 旅行 友達 一人 同僚 家族 恋人)
+    label_box = []
+    initial_labels.each do |l|
+      label_box << {user_id: user_id, name: l}
+    end
+    Label.create(label_box)
+    # 追加機能としてadmin権限で初期登録のラベルを変更できるようにする
   end
 
   def self.ransackable_attributes(auth_object = nil)
