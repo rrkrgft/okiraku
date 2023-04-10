@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :favorites, only: [:create, :destroy, :index ]
   resources :users, only: [:index]
   resources :analyses, only: [:index]
+  resources :top, only: [:index]
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users
   if Rails.env.development?
