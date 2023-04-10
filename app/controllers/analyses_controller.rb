@@ -55,24 +55,18 @@ class AnalysesController < ApplicationController
       post_dates << { name: key.to_s, y: value }
     end
 
-    months = [ 4, 5, 6, 7, 8, 9 ]
-    product_A_sales = [ 1_000_000, 1_200_000, 1_300_000,
-      1_400_000, 1_200_000, 1_100_000 ]
-    product_B_sales = [   300_000,   500_000,   750_000,
-      1_150_000, 1_350_000, 1_600_000 ] 
     # グラフ（チャート）を作成 
     @chart1 = LazyHighCharts::HighChart.new("graph") do |c|
       c.title(text: "ラベルの個数")
       # X軸の名称を設定 '月'
-      c.xAxis(categories: my_labels, title: {text: 'ラベル名'})
+      c.xAxis(categories: labels, title: {text: 'ラベル名'})
       c.yAxis(title: {text: '個数'})
       c.series(name: "自分の投稿", data: my_labels_counts)
       c.series(name: "お気に入りの投稿", data: favorite_labels_counts)
       # 判例を右側に配置
-     c.legend(align: 'right', verticalAlign: 'top', 
-       x: -100, y: 180, layout: 'vertical')
-     # グラフの種類を「折れ線グラフ」から「棒グラフ」に変更
-     c.chart(type: "column")
+      c.legend(align: 'right', verticalAlign: 'top', x: -100, y: 180, layout: 'vertical')
+      # グラフの種類を「折れ線グラフ」から「棒グラフ」に変更
+      c.chart(type: "column")
     end
 
     @chart2 = LazyHighCharts::HighChart.new("graph") do |c|
