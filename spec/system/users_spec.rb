@@ -24,10 +24,7 @@ RSpec.describe "ユーザー機能", type: :system do
   describe 'セッションのログイン機能' do
     let!(:user) { FactoryBot.create(:user) }
     before do
-      visit new_user_session_path
-      fill_in 'メールアドレス', with: user.email
-      fill_in 'パスワード', with: 'password'
-      find('.btn-primary').click
+      sign_in(user)
     end
     context 'ログインをした場合' do
       it 'ログインできる' do

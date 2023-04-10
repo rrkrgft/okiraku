@@ -4,10 +4,7 @@ RSpec.describe "投稿機能", type: :system do
   describe '新規投稿機能' do
     let!(:user){ FactoryBot.create(:user) }
     before do
-      visit new_user_session_path
-      fill_in 'メールアドレス', with: user.email
-      fill_in 'パスワード', with: 'password'
-      find('.btn-primary').click
+      sign_in(user)
     end
     context '投稿を新規作成した場合' do
       it '作成した投稿が表示される' do
@@ -46,10 +43,7 @@ RSpec.describe "投稿機能", type: :system do
     let!(:post2){ FactoryBot.create(:post, title: "title_post2", user: user)}
     let!(:detail2){ FactoryBot.create(:detail, post: post2)}
     before do
-      visit new_user_session_path
-      fill_in 'メールアドレス', with: user.email
-      fill_in 'パスワード', with: 'password'
-      find('.btn-primary').click
+      sign_in(user)
     end
     context '一覧画面に遷移した場合' do
       it '作成済みの投稿一覧が表示される' do
