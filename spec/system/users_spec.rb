@@ -20,6 +20,27 @@ RSpec.describe "ユーザー機能", type: :system do
         expect(page).to have_content 'パスワード'
       end
     end
+    context 'ログインせずに一覧ページにアクセスした場合' do
+      it 'ログイン画面に遷移' do
+        visit favorites_path
+        expect(page).to have_content 'ログイン'
+        expect(page).to have_content 'パスワード'
+      end
+    end
+    context 'ログインせずに一覧ページにアクセスした場合' do
+      it 'ログイン画面に遷移' do
+        visit labels_path
+        expect(page).to have_content 'ログイン'
+        expect(page).to have_content 'パスワード'
+      end
+    end
+    context 'ログインせずに一覧ページにアクセスした場合' do
+      it 'ログイン画面に遷移' do
+        visit users_path
+        expect(page).to have_content 'ログイン'
+        expect(page).to have_content 'パスワード'
+      end
+    end
   end
   describe 'セッションのログイン機能' do
     let!(:user) { FactoryBot.create(:user) }
