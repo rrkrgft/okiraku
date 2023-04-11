@@ -53,3 +53,5 @@ gem 'mini_magick'
 gem 'lazy_high_charts'
 gem 'kaminari'
 gem 'bootstrap5-kaminari-views'
+gem 'fog-aws'
+gem 'aws-sdk-s3', require: false
