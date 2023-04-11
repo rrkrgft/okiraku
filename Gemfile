@@ -21,7 +21,6 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'spring-commands-rspec'
   gem 'factory_bot_rails'
-  gem 'faker'
   gem 'launchy'
   gem 'spring'
   gem 'capistrano', '3.16.0' # capistranoのツール一式
@@ -64,3 +63,4 @@ gem 'fog-aws'
 gem 'aws-sdk-s3', require: false
 gem 'dotenv-rails' # 開発環境で環境変数を操作するのに必要
 gem 'unicorn' # アプリケーションサーバのunicorn
+gem 'faker'
