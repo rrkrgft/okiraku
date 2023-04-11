@@ -24,6 +24,13 @@ group :development, :test do
   gem 'faker'
   gem 'launchy'
   gem 'spring'
+  gem 'capistrano', '3.16.0' # capistranoのツール一式
+  gem 'capistrano-bundler'
+  gem 'capistrano-rails'
+  gem 'capistrano-rbenv'
+  gem 'capistrano3-unicorn'
+  gem 'ed25519'
+  gem 'bcrypt_pbkdf'
 end
 
 group :development do
@@ -55,3 +62,5 @@ gem 'kaminari'
 gem 'bootstrap5-kaminari-views'
 gem 'fog-aws'
 gem 'aws-sdk-s3', require: false
+gem 'dotenv-rails' # 開発環境で環境変数を操作するのに必要
+gem 'unicorn' # アプリケーションサーバのunicorn
