@@ -16,6 +16,12 @@ class UsersController < ApplicationController
     redirect_to root_path, notice: 'ゲストユーザーとしてログインしました'
   end
 
+  def guest_admin_sign_in
+    user = User.guest_admin
+    sign_in user
+    redirect_to root_path, notice: 'ゲストユーザー（管理者）としてログインしました'
+  end
+
   private
   def set_q
     @q = Post.ransack(params[:q])

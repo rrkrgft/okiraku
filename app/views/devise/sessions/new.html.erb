@@ -1,7 +1,7 @@
 <h2 class="mt-2"><%= t('.sign_in') %></h2>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field mt-2">
+  <div class="field mt-4">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
   </div>
@@ -23,8 +23,9 @@
   </div>
 <% end %>
 
-<%= link_to "O・KI・RAKUのアプリの説明", top_index_path, class: "btn btn-outline-info" %><br>
-
-<%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post, class: "my-3 btn btn-outline-dark" %><br>
-
+<%= link_to "O・KI・RAKUのアプリの説明", top_index_path, class: "btn btn-outline-info mb-3" %><br>
+<div class="border-top border-bottom mb-3 border-3">
+<%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post, class: "my-3 btn btn-outline-dark" %>
+<%= link_to 'ゲストログイン（管理者閲覧用）', users_guest_admin_sign_in_path, method: :post, class: "my-3 btn btn-outline-secondary" %>
+</div>
 <%= render "devise/shared/links" %>

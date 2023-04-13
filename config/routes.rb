@@ -7,6 +7,9 @@ Rails.application.routes.draw do
   resources :analyses, only: [:index]
   resources :top, only: [:index]
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-  devise_for :users
+  devise_for :users, controllers: {
+    registrations: 'users/registrations'
+  }
   post '/users/guest_sign_in', to: 'users#guest_sign_in'
+  post '/users/guest_admin_sign_in', to: 'users#guest_admin_sign_in'
 end
