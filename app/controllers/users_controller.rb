@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: [:index]
 
   def index
     set_q
@@ -8,6 +8,12 @@ class UsersController < ApplicationController
     else
       @posts = Post.where(user_id: current_user.id).page(params[:page])
     end
+  end
+
+  def guest_sign_in
+    user = User.guest
+    sign_in user
+    redirect_to root_path, notice: 'ゲストユーザーとしてログインしました'
   end
 
   private
