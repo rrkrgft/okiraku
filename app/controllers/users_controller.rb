@@ -4,10 +4,11 @@ class UsersController < ApplicationController
   def index
     set_q
     if params[:q]
-      @posts = @q.result.where(user_id: current_user.id).page(params[:page])
+      @posts = @q.result
     else
-      @posts = Post.where(user_id: current_user.id).page(params[:page])
+      @posts = Post.all
     end
+    @posts = @posts.where(user_id: current_user.id).page(params[:page]).per(10)
   end
 
   def guest_sign_in

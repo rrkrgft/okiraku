@@ -47,7 +47,7 @@ RSpec.describe "投稿機能", type: :system do
         fill_in "深掘り", with: 'test_detail_deeply'
         check "趣味"
         click_on "下書き"
-        sleep 1.0
+        visit users_path
         click_on "test_title"
         expect(page).to have_content("下書き", count:2)
         expect(page).to have_content 'test_title'
@@ -91,6 +91,7 @@ RSpec.describe "投稿機能", type: :system do
         click_on "編集", match: :first
         find('#task_name').set("edit_title")
         click_on "下書き"
+        visit users_path
         click_on "edit_title"
         expect(page).to have_content 'edit_title'
         expect(page).to have_content("下書き",count:2)

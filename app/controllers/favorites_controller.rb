@@ -17,10 +17,11 @@ class FavoritesController < ApplicationController
     set_q
     favorites = Favorite.where(user_id: current_user.id).pluck(:post_id)
     if params[:q]
-      @posts = @q.result.where(id: favorites).where(draft: false).page(params[:page])
+      @posts = @q.result
     else
-      @posts = Post.where(id: favorites).where(draft: false).page(params[:page])
+      @posts = Post.all
     end
+    @posts = @posts.where(id: favorites).where(draft: false).page(params[:page])
   end
 
   private
