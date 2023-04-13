@@ -12,6 +12,8 @@ Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 
+// require("@rails/activestorage").start()
+
 // require("highcharts/highcharts")
 // require("highcharts/highcharts-more")
 // require("highcharts/highstock")

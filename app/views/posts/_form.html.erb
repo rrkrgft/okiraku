@@ -45,7 +45,8 @@
   </div>
   <div class="form-group mt-2">
     <%= post.label :images %>
-    <%= post.file_field :images, multiple: true, direct_upload: true %>
+    <%= post.file_field :images, multiple: true %>
+    <%#= post.file_field :images, multiple: true, direct_upload: true %>
   </div>
   <%= post.hidden_field :draft, value: false %>
   <div class="mt-4">
