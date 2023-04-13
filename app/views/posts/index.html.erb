@@ -26,21 +26,19 @@
     </thead>
     <tbody>
       <% @posts.each do |p| %>
-        <% if p.draft == false || p.user.id == current_user.id %>
-          <tr>
-            <td><%= link_to p.title, post_path(p.id),class: "task_row" %></td>
-            <td><%= p.score %>％</td>
-            <td><%= p.user.name %></td>
-            <td><%= p.created_at.strftime('%Y/%m/%d') %></td>
-            <td><%= p.updated_at.strftime('%Y/%m/%d') %></td>
-            <% if current_user == p.user %>
-              <td><%= link_to "編集", edit_post_path(p.id), class: "btn btn-outline-secondary" %>
-              <%= link_to "削除", post_path(p.id), method: :delete, class: "btn btn-danger", data: { confirm: '本当に削除していいですか' } %></td>
-            <% else %>
-              <td></td>
-            <% end %>
-          </tr>
-        <% end %>
+        <tr>
+          <td><%= link_to p.title, post_path(p.id),class: "task_row" %></td>
+          <td><%= p.score %>％</td>
+          <td><%= p.user.name %></td>
+          <td><%= p.created_at.strftime('%Y/%m/%d') %></td>
+          <td><%= p.updated_at.strftime('%Y/%m/%d') %></td>
+          <% if current_user == p.user %>
+            <td><%= link_to "編集", edit_post_path(p.id), class: "btn btn-outline-secondary" %>
+            <%= link_to "削除", post_path(p.id), method: :delete, class: "btn btn-danger", data: { confirm: '本当に削除していいですか' } %></td>
+          <% else %>
+            <td></td>
+          <% end %>
+        </tr>
       <% end %>
     </tbody>
   </table>

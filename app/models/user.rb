@@ -32,4 +32,19 @@ class User < ApplicationRecord
   def self.ransackable_associations(auth_object = nil)
     ["posts", "details", "labels"]
   end
+
+  def self.guest
+    find_or_create_by!(email: 'guest@example.com') do |user|
+      user.password = SecureRandom.urlsafe_base64
+      user.name = "ゲスト"
+    end
+  end
+
+  def self.guest_admin
+    find_or_create_by!(email: 'guest-admin@example.com') do |user|
+      user.password = SecureRandom.urlsafe_base64
+      user.name = "ゲスト"
+      user.admin = true
+    end
+  end
 end

@@ -24,10 +24,11 @@ class PostsController < ApplicationController
   def index
     set_q
     if params[:q]
-      @posts = @q.result.page(params[:page])
+      @posts = @q.result
     else
-      @posts = Post.all.page(params[:page])
-    end    
+      @posts = Post.all
+    end
+    @posts = @posts.where(draft: false).page(params[:page]).per(10)
   end
   
   def show

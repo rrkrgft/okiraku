@@ -18,8 +18,6 @@
       <tr>
         <th><%= sort_link(@q, :title, "タイトル") %></th>
         <th><%= sort_link(@q, :detail_public, "詳細") %></th>
-        <th><%= sort_link(@q, :detail_secret, "詳細（非公開）") %></th>
-        <th><%= sort_link(@q, :detail_deeply, "深掘り") %></th>
         <th><%= sort_link(@q, :score, "嬉しい度", default_order: :desc ) %></th>
         <th><%= sort_link(@q, :draft, "下書き") %></th>
         <th><%= sort_link(@q, :created_at, "投稿日", default_order: :desc ) %></th>
@@ -31,8 +29,6 @@
         <tr>
           <td><%= link_to p.title.truncate(10), post_path(p.id),class: "task_row" %></td>
           <td><%= p.detail.public.truncate(10) %></td>
-          <td><%= p.detail.secret.truncate(10) %></td>
-          <td><%= p.detail.deeply.truncate(10) %></td>
           <td><%= p.score %>％</td>
           <td><%= p.draft ? '下書き' : '公開中' %></td>
           <td><%= p.created_at.strftime('%Y/%m/%d') %></td>
