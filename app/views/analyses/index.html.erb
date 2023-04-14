@@ -13,11 +13,6 @@
     <input type="button" value="Check" onclick="myfunc()">
 </figure>
 
-<script src="https://code.highcharts.com/highcharts.js"></script>
-<script src="https://code.highcharts.com/modules/wordcloud.js"></script>
-<script src="https://code.highcharts.com/modules/exporting.js"></script>
-<script src="https://code.highcharts.com/modules/export-data.js"></script>
-<script src="https://code.highcharts.com/modules/accessibility.js"></script>
 <script>
   const text = "<%= @public_boxs %>" + "<%= @secret_boxs %>" + "<%= @deeply_boxs %>",
     lines = text.replace(/[():'?0-9]+/g, '').replace(/[\]\[]/g, ',').split(/[,\. ]+/g),
