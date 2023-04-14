@@ -13,6 +13,11 @@
   <input type="button" value="Check" onclick="myfunc()"> %>
 </figure>
 
+<div class="m-3">
+  <h2>ChatGPTによる分析結果</h2>
+  <p class="m-2">　<%= @charts %></p>
+</div>
+
 <script>
   const text = "<%= @public_boxs %>" + "<%= @secret_boxs %>" + "<%= @deeply_boxs %>",
     lines = text.replace(/[():'?0-9]+/g, '').replace(/[\]\[]/g, ',').split(/[,\. ]+/g),
