@@ -6,10 +6,14 @@
 ## 就業Termで学んだ技術
  - devise
  - お気に入り機能
+ - cancancan
+ - AWS EC2
 
 ## カリキュラム外技術
- - cancancan
  - ransack
+ - LazyHighCharts
+ - MeCab
+ - Natto
 
  ## アプリケーションの実行手順
   `git clone git@github.com:rrkrgft/okiraku.git`  

@@ -32,9 +32,26 @@ m = 1
         public: "detail_public#{m}",
         secret: "detail_secret#{m}",
         deeply: "detail_deeply#{m}",
-        secret_choice_deep: [ true, false].sample,
+        secret_choice_deep: [ true, false].sample
       }
     )
     m += 1
+  end
+end
+
+User.all.each do |user|
+  not_my_posts = Post.where.not(user_id: user.id).where(draft: false)
+  3.times do |n|
+    count = rand(0...not_my_posts.count)
+    post = not_my_posts[count].id
+    Favorite.create(user_id: user.id, post_id: post)
+  end
+end
+
+User.all.each do |user|
+  user.posts.each do |post|
+    2.times do |n|
+      Labeling.create(label_id: rand(0...17), post_id: post.id)
+    end
   end
 end
