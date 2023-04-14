@@ -12,6 +12,7 @@ ja:
         image: 写真
         score: 嬉しい度
         draft: 下書き
+        images: 画像
       user:
         name: 名前
         email: メールアドレス
