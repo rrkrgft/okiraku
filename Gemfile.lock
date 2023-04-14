@@ -235,6 +235,8 @@ GEM
     minitest (5.18.0)
     msgpack (1.7.0)
     multi_json (1.15.0)
+    natto (1.2.0)
+      ffi (>= 1.9.0)
     nested_form (0.3.2)
     net-imap (0.3.4)
       date
@@ -440,6 +442,7 @@ DEPENDENCIES
   letter_opener_web
   listen (~> 3.3)
   mini_magick
+  natto
   pg (~> 1.1)
   pry-rails
   puma (~> 5.0)

@@ -86,6 +86,30 @@ class AnalysesController < ApplicationController
       })
       # グラフの種類として「パイチャート」を指定
       c.chart(type: "pie")
-   end
+    end
+
+    @public_boxs = []
+    @secret_boxs = []
+    @deeply_boxs = []
+    ng_word = ["こと","よう","あと"]
+    texts = my_posts
+    mecab = Natto::MeCab.new("-Ochasen")
+    texts.each do |t|
+      mecab.parse(t.detail.public) do |n|
+        if n.feature.include?("名詞"||"動詞")
+          @public_boxs  << "#{n.surface}" unless n.surface.size == 1 || ng_word.any?(n.surface)
+        end
+      end
+      mecab.parse(t.detail.secret) do |n|
+        if n.feature.include?("名詞"||"動詞")
+          @secret_boxs  << "#{n.surface}" unless n.surface.size == 1 || ng_word.any?(n.surface)
+        end
+      end
+      mecab.parse(t.detail.deeply) do |n|
+        if n.feature.include?("名詞"||"動詞")
+          @deeply_boxs  << "#{n.surface}" unless n.surface.size == 1 || ng_word.any?(n.surface)
+        end
+      end
+    end
   end
 end
