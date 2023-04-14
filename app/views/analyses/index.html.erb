@@ -6,12 +6,12 @@
 <div class="mt-2">
   <%= high_chart("my_chart2", @chart2) %>
 </div>
+<div id="edit_area"></div>
+<input type="button" value="Check" onclick="myfunc()">
 
 <figure class="highcharts-figure">
   <div id="container"></div>
 </figure>
-<div id="edit_area"></div>
-<input type="button" value="Check" onclick="myfunc()">
 
 <script>
   const text = "<%= @public_boxs %>" + "<%= @secret_boxs %>" + "<%= @deeply_boxs %>",
