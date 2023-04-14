@@ -9,8 +9,8 @@
 
 <figure class="highcharts-figure">
     <div id="container"></div>
-    <%# <div id="edit_area"></div>
-    <input type="button" value="Check" onclick="myfunc()"> %>
+    <div id="edit_area"></div>
+    <input type="button" value="Check" onclick="myfunc()">
 </figure>
 
 <script src="https://code.highcharts.com/highcharts.js"></script>
@@ -62,8 +62,8 @@ Highcharts.chart('container', {
     }
 });
 
-// var myfunc = function () {
-//     var str = ".innerHTMLで変数渡し！";
-//     document.getElementById('edit_area').innerHTML = lines ;
-//     }
+var myfunc = function () {
+    var str = ".innerHTMLで変数渡し！";
+    document.getElementById('edit_area').innerHTML = lines ;
+    }
 </script>
