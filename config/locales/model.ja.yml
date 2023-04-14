@@ -6,6 +6,8 @@ ja:
       favorite: お気に入り
       label: ラベル
       detail: 詳細
+      labeling: ラベル付
+      Blob: ああああ
     attributes:
       post:
         title: タイトル
@@ -13,6 +15,10 @@ ja:
         score: 嬉しい度
         draft: 下書き
         images: 画像
+        admin: 管理者
+        user: 投稿
+        created_at: 作成日
+        updated_at: 更新日
       user:
         name: 名前
         email: メールアドレス
@@ -21,13 +27,24 @@ ja:
         password_confirmation: 確認用パスワード
         remember_me: ログインを記憶
         admin: 管理者権限
+        created_at: 作成日
+        updated_at: 更新日
       session:
         email: メールアドレス
         password: パスワード
       label:
         name: ラベル名
+        user: ユーザー
+        labelings: ラベル
+        created_at: 作成日
+        updated_at: 更新日
       detail:
         public: 詳細
         secret: 詳細（非公開）
         deeply: 深掘り
         secret_choice_deep: 非公開（深掘り）
+      favorite:
+        user: ユーザー
+        post: 投稿
+        created_at: 作成日
+        updated_at: 更新日
