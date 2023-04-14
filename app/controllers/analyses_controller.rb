@@ -1,4 +1,6 @@
 class AnalysesController < ApplicationController
+  before_action :set_common_variable
+
   def index
     @user = User.find_by(id: current_user.id)
     # 投稿の一覧とラベルの投稿数を抽出
@@ -111,5 +113,23 @@ class AnalysesController < ApplicationController
         end
       end
     end
+
+    posts_count = my_posts.count
+
+    i = 0
+    str = ""
+    my_labels.each do |l|
+      str << "#{l}は#{my_labels_counts[i]}個、"
+      i += 1
+    end
+
+    @query = "楽しい、嬉しいと思うことに対して、#{posts_count}件投稿した際にラベルをそれぞれ、#{str}、のラベルが付けられました。自分はどのようなものに好きだと思っているか教えてください。"
+    response = @client.chat(
+      parameters: {
+        model: "gpt-3.5-turbo",
+        messages: [{ role: "user", content: @query }],
+      }
+    )
+    @charts = response.dig("choices", 0, "message", "content")
   end
 end
