@@ -6,7 +6,7 @@ class UsersController < ApplicationController
     if params[:q]
       @posts = @q.result
     else
-      @posts = Post.all
+      @posts = Post.includes(:detail)
     end
     @posts = @posts.where(user_id: current_user.id).page(params[:page]).per(10)
   end
