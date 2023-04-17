@@ -40,8 +40,27 @@
   </table>
   <%= paginate @posts, theme: 'bootstrap-5' %>
 </div>
-  <%= link_to "新規登録", new_post_path, class: "btn btn-primary" %>
-  <%= link_to "ユーザー情報変更", edit_user_registration_path(current_user.id), class: "btn btn-secondary" %>
-  <%= link_to "分析（chatGPTなし）", analyses_path(gpt: "no_gpt"), class: "btn btn-info", data: {turbolinks: "false"} %>
-  <%= link_to "分析（chatGPTあり）", analyses_path, class: "btn btn-info", data: {turbolinks: "false"} %>
-  <p>※「分析（chatGPTあり）」の場合は画面の遷移に時間を要します</p>
+<div id="Loading" style="display:none;" style="width: 400px; height: 70px;">
+  <div style="width: 300px; height: 50px; margin: 10px auto;">
+    <table>
+      <tr>
+        <td><%= image_tag asset_path('clock.gif'), class: "loadimg", size: "30x30" %></td>
+        <td><span class="loadmsg">処理中...<br>しばらくお待ち下さい。</span></td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<%= link_to "新規登録", new_post_path, class: "btn btn-primary" %>
+<%= link_to "ユーザー情報変更", edit_user_registration_path(current_user.id), class: "btn btn-secondary" %>
+<%= link_to "分析（chatGPTなし）", analyses_path(gpt: "no_gpt"), class: "btn btn-info", data: {turbolinks: "false"} %>
+<%= link_to "分析（chatGPTあり）", analyses_path, class: "btn btn-success", data: {turbolinks: "false"}, onclick: "Form_Submit()" %>
+<p>※「分析（chatGPTあり）」の場合は画面の遷移に時間を要します</p>
+
+<script>
+  function Form_Submit(){
+    document.getElementById("Loading").style.display = "block";
+    document.getElementById("Loading").style.top = 150
+    document.getElementById("Loading").style.left = (document.body.clientWidth - 300) / 2;
+  }
+</script>

@@ -13,10 +13,14 @@
   <input type="button" value="Check" onclick="myfunc()"> %>
 </figure>
 
-<div class="m-3">
-  <h2 style="color: #6594e0; border-bottom: dashed 2px #6594e0; margin: 20px;">ChatGPTによる分析結果</h2>
-  <p class="m-4">　<%= @charts %></p>
-</div>
+<% if @charts %>
+  <div class="m-3">
+    <h2 style="color: #6594e0; border-bottom: dashed 2px #6594e0; margin: 20px;">ChatGPTによる分析結果</h2>
+    <div id="question_area"></div>
+    <input type="button" value="質問内容の確認" onclick="questionfunc()">
+    <p class="m-4">　<%= @charts %></p>
+  </div>
+<% end %>
 
 <script>
   const text = "<%= @public_boxs %>" + "<%= @secret_boxs %>" + "<%= @deeply_boxs %>",
@@ -61,6 +65,11 @@ Highcharts.chart('container', {
         headerFormat: '<span style="font-size: 16px"><b>{point.key}</b></span><br>'
     }
 });
+
+var questionfunc = function () {
+    var str = ".innerHTMLで変数渡し！";
+    document.getElementById('question_area').innerHTML = "<%= @query %>" ;
+    }
 
 // var myfunc = function () {
 //     var str = ".innerHTMLで変数渡し！";

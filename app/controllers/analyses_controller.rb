@@ -98,13 +98,29 @@ class AnalysesController < ApplicationController
     # ここからchatGPTに対するコード関係
     unless params[:gpt] == "no_gpt"
       posts_count = my_posts_details.count
-
-      str = ""
+      my_counts = my_labels.map{ |l| my_labels_lists.count(l) }
+      
+      label_str = ""
       my_labels.each_with_index do |l,i|
-        str << "#{l}は#{my_labels_counts[i]}個、"
+        label_str << "#{l}が#{my_counts[i]}個、"
       end
 
-      @query = "楽しい、嬉しいと思うことに対して、#{posts_count}件投稿した際にラベルをそれぞれ、#{str}、のラベルが付けられました。自分はどのようなものに好きだと思っているか教えてください。"
+      words_boxs = (@public_boxs + @secret_boxs + @deeply_boxs).flatten
+      words_index = words_boxs.uniq
+      words_count = words_index.map{ |l| words_boxs.count(l) }
+      words_hash = Hash[*[words_index,words_count].transpose.flatten]
+      words_asc = words_hash.sort{|(k1,v1),(k2,v2)| v2 <=> v1}
+      words_top10 = []
+      10.times do |a|
+        words_top10 << words_asc[a]
+      end
+
+      detail_str = ""
+      words_top10.each do |word,count|
+        detail_str << "#{word}が#{count}個、"
+      end
+
+      @query = "自分が楽しい、嬉しいと思うことを合計#{posts_count}件投稿しました。そのうちラベルをそれぞれ#{label_str}付けました。また、投稿で多く出てきた単語は#{detail_str}でした。自分はどのようなものを好きだと思う傾向にあるか教えてください。"
       response = @client.chat(
         parameters: {
           model: "gpt-3.5-turbo",
