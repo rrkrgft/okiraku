@@ -71,24 +71,26 @@ class AnalysesController < ApplicationController
     end
 
     # ここからテキストマイニングに関係するコード
-    @words_boxs = []
+    @public_boxs = []
+    @secret_boxs = []
+    @deeply_boxs = []
     ng_word = ["こと","よう","あと"]
     mecab = Natto::MeCab.new("-Ochasen")
 
     my_posts_details.each do |t|
       mecab.parse(t.detail.public) do |n|
         if n.feature.include?("名詞"||"動詞")
-          @words_boxs << "#{n.surface}" unless n.surface.size == 1 || ng_word.any?(n.surface)
+          @public_boxs << "#{n.surface}" unless n.surface.size == 1 || ng_word.any?(n.surface)
         end
       end
       mecab.parse(t.detail.secret) do |n|
         if n.feature.include?("名詞"||"動詞")
-          @words_boxs << "#{n.surface}" unless n.surface.size == 1 || ng_word.any?(n.surface)
+          @secret_boxs << "#{n.surface}" unless n.surface.size == 1 || ng_word.any?(n.surface)
         end
       end
       mecab.parse(t.detail.deeply) do |n|
         if n.feature.include?("名詞"||"動詞")
-          @words_boxs << "#{n.surface}" unless n.surface.size == 1 || ng_word.any?(n.surface)
+          @deeply_boxs << "#{n.surface}" unless n.surface.size == 1 || ng_word.any?(n.surface)
         end
       end
     end
@@ -101,7 +103,6 @@ class AnalysesController < ApplicationController
       my_labels.each_with_index do |l,i|
         str << "#{l}は#{my_labels_counts[i]}個、"
       end
-      binding.pry
 
       @query = "楽しい、嬉しいと思うことに対して、#{posts_count}件投稿した際にラベルをそれぞれ、#{str}、のラベルが付けられました。自分はどのようなものに好きだと思っているか教えてください。"
       response = @client.chat(

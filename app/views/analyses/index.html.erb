@@ -19,7 +19,7 @@
 </div>
 
 <script>
-  const text = "<%= @words_boxs %>" ,
+  const text = "<%= @public_boxs %>" + "<%= @secret_boxs %>" + "<%= @deeply_boxs %>",
     lines = text.replace(/[():'?0-9]+/g, '').replace(/[\]\[]/g, ',').split(/[,\. ]+/g),
     data = lines.reduce((arr, word) => {
         let obj = Highcharts.find(arr, obj => obj.name === word);
