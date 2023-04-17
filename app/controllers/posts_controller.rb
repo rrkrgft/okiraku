@@ -26,7 +26,7 @@ class PostsController < ApplicationController
     if params[:q]
       @posts = @q.result
     else
-      @posts = Post.all
+      @posts = Post.includes(:user)
     end
     @posts = @posts.where(draft: false).page(params[:page]).per(10)
   end

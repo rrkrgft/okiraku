@@ -16,7 +16,7 @@ class User < ApplicationRecord
   private
   def make_labels
     user_id = self.id
-    initial_labels = %w(趣味 仕事 自己学習 遊び スポーツ 読書 映画 ドラマ 料理 散歩 登山 旅行 友達 一人 同僚 家族 恋人)
+    initial_labels = %w(趣味 仕事 自己学習 遊び スポーツ 読書 映画 ドラマ 料理 食事 散歩 登山 旅行 友達 一人 同僚 家族 恋人)
     label_box = []
     initial_labels.each do |l|
       label_box << {user_id: user_id, name: l}
