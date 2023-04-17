@@ -39,7 +39,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-  # protected
+  protected
 
   def ensure_normal_user
     if resource.email == 'guest@example.com' || 'guest-admin@example.com'

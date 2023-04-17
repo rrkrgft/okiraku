@@ -33,15 +33,18 @@ class PostsController < ApplicationController
   
   def show
     set_post
+    check_user_view
   end
   
   def edit
     session[:previous_url] = request.referer
     set_post
+    check_user_edit
   end
   
   def update
     set_post
+    check_user_edit
     params[:post][:draft] = true if !params[:register]
     if @post.update(post_params)
       if !params[:register]
@@ -56,6 +59,7 @@ class PostsController < ApplicationController
 
   def destroy
     set_post
+    check_user_edit
     @post.destroy
     redirect_to posts_path, notice: "投稿を削除しました"
   end
@@ -71,5 +75,13 @@ class PostsController < ApplicationController
 
   def set_q
     @q = Post.ransack(params[:q])
+  end
+
+  def check_user_view
+    redirect_to posts_path, notice: "閲覧権限がありません" if current_user != @post.user && @post.draft == true
+  end
+
+  def check_user_edit
+    redirect_to posts_path, notice: "編集権限がありません" unless current_user == @post.user
   end
 end

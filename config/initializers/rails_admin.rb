@@ -1,7 +1,7 @@
 RailsAdmin.config do |config|
   config.asset_source = :webpacker
 
-  ### Popular gems integration
+  config.parent_controller = 'ApplicationController'
 
   ## == Devise ==
   config.authenticate_with do

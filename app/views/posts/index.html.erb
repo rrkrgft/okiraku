@@ -17,10 +17,10 @@
     <thead class="tehad-default">
       <tr>
         <th><%= sort_link(@q, :title, "タイトル") %></th>
+        <th>画像</th>
         <th><%= sort_link(@q, :score, "嬉しい度", default_order: :desc ) %></th>
         <th><%= sort_link(@q, :user.name, "投稿者") %></th>
         <th><%= sort_link(@q, :created_at, "投稿日", default_order: :desc ) %></th>
-        <th><%= sort_link(@q, :updated_at, "更新日", default_order: :desc ) %></th>
         <th></th>
       </tr>
     </thead>
@@ -28,10 +28,14 @@
       <% @posts.each do |p| %>
         <tr>
           <td><%= link_to p.title, post_path(p.id),class: "task_row" %></td>
+          <td><% if p.images.attached? %>
+            <% p.images.each do |image| %>
+              <%= image_tag image.variant( resize: "100x50" ) %>
+            <% end %>
+          <% end %></td>
           <td><%= p.score %>％</td>
           <td><%= p.user.name %></td>
           <td><%= p.created_at.strftime('%Y/%m/%d') %></td>
-          <td><%= p.updated_at.strftime('%Y/%m/%d') %></td>
           <% if current_user == p.user %>
             <td><%= link_to "編集", edit_post_path(p.id), class: "btn btn-outline-secondary" %>
             <%= link_to "削除", post_path(p.id), method: :delete, class: "btn btn-danger", data: { confirm: '本当に削除していいですか' } %></td>
@@ -44,4 +48,4 @@
   </table>
   <%= paginate @posts, theme: 'bootstrap-5' %>
 </div>
-  <%= link_to "新規登録", new_post_path, class: "btn btn-primary" %>
+  <%= link_to "新規投稿", new_post_path, class: "btn btn-primary" %>

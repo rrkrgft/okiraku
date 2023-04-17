@@ -144,5 +144,12 @@ RSpec.describe "投稿機能", type: :system do
         expect(page).not_to have_content '秘密の深掘り'
       end
     end
+    context '下書きの詳細画面を表示した場合' do
+      it '下書きが表示されない' do
+        visit post_path(post4)
+        expect(page).to have_content '閲覧権限がありません'
+        expect(page).not_to have_content 'title_post4'
+      end
+    end
   end
 end
