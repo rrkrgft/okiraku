@@ -51,7 +51,7 @@
   </div>
 </div>
 
-<%= link_to "新規登録", new_post_path, class: "btn btn-primary" %>
+<%= link_to "新規投稿", new_post_path, class: "btn btn-primary" %>
 <%= link_to "ユーザー情報変更", edit_user_registration_path(current_user.id), class: "btn btn-secondary" %>
 <%= link_to "分析（chatGPTなし）", analyses_path(gpt: "no_gpt"), class: "btn btn-info", data: {turbolinks: "false"} %>
 <%= link_to "分析（chatGPTあり）", analyses_path, class: "btn btn-success", data: {turbolinks: "false"}, onclick: "Form_Submit()" %>

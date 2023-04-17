@@ -78,10 +78,10 @@ class PostsController < ApplicationController
   end
 
   def check_user_view
-    redirect_to posts_path, notice: "閲覧権限がありません" unless current_user = @post.user && @post.draft == true
+    redirect_to posts_path, notice: "閲覧権限がありません" if current_user != @post.user && @post.draft == true
   end
 
   def check_user_edit
-    redirect_to posts_path, notice: "編集権限がありません" unless current_user = @post.user
+    redirect_to posts_path, notice: "編集権限がありません" unless current_user == @post.user
   end
 end
