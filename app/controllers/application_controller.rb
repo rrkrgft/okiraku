@@ -26,4 +26,8 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
     devise_parameter_sanitizer.permit(:account_update, keys: [:name])
   end
+
+  def check_user_analysis
+    redirect_to posts_path, notice: "分析確認用ユーザーでは修正等できません" if current_user.email == "guest-analysis@example.com"
+  end
 end
