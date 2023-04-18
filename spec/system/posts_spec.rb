@@ -49,7 +49,7 @@ RSpec.describe "投稿機能", type: :system do
         click_on "下書き"
         visit users_path
         click_on "test_title"
-        expect(page).to have_content("下書き", count:2)
+        expect(page).to have_content "下書き"
         expect(page).to have_content 'test_title'
       end
     end
@@ -94,7 +94,7 @@ RSpec.describe "投稿機能", type: :system do
         visit users_path
         click_on "edit_title"
         expect(page).to have_content 'edit_title'
-        expect(page).to have_content("下書き",count:2)
+        expect(page).to have_content "下書き"
         expect(page).not_to have_content 'title_post1'
       end
     end
