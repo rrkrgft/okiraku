@@ -19,7 +19,7 @@
         <th><%= sort_link(@q, :title, "タイトル") %></th>
         <th><%= sort_link(@q, :detail_public, "詳細") %></th>
         <th><%= sort_link(@q, :score, "嬉しい度", default_order: :desc ) %></th>
-        <th><%= sort_link(@q, :draft, "下書き") %></th>
+        <th><%= sort_link(@q, :draft, "状態") %></th>
         <th><%= sort_link(@q, :created_at, "投稿日", default_order: :desc ) %></th>
         <th></th>
       </tr>
@@ -53,9 +53,9 @@
 
 <%= link_to "新規投稿", new_post_path, class: "btn btn-primary" %>
 <%= link_to "ユーザー情報変更", edit_user_registration_path(current_user.id), class: "btn btn-secondary" %>
-<%= link_to "分析（chatGPTなし）", analyses_path(gpt: "no_gpt"), class: "btn btn-info", data: {turbolinks: "false"} %>
-<%= link_to "分析（chatGPTあり）", analyses_path, class: "btn btn-success", data: {turbolinks: "false"}, onclick: "Form_Submit()" %>
-<p>※「分析（chatGPTあり）」の場合は画面の遷移に時間を要します</p>
+<%= link_to "分析（ChatGPTなし）", analyses_path(gpt: "no_gpt"), class: "btn btn-info", data: {turbolinks: "false"} %>
+<%= link_to "分析（ChatGPTあり）", analyses_path, class: "btn btn-success", data: {turbolinks: "false"}, onclick: "Form_Submit()" %>
+<p>※「分析（ChatGPTあり）」の場合は画面の遷移に時間を要します</p>
 
 <script>
   function Form_Submit(){
