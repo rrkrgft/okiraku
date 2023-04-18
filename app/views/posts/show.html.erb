@@ -31,22 +31,20 @@
       <td><%= @post.score %>％</td>
     </tr>
     <tr>
-      <th>下書き</th>
-      <td><%= @post.draft ? "下書き" : "公開"  %></td>
+      <th>状態</th>
+      <td><%= @post.draft ? "下書き" : "公開中"  %></td>
     </tr>
-    <% if current_user == @post.user %>
-      <tr>
-        <th>ラベル</th>
-        <td><%= @post.labels.pluck(:name).join("、") %></td>
-      </tr>
-    <% end %>
+    <tr>
+      <th>ラベル</th>
+      <td><%= @post.labels.pluck(:name).join("、") %></td>
+    </tr>
     <tr>
       <th>投稿日時</th>
-      <td><%= @post.created_at %></td>
+      <td><%= @post.created_at.strftime('%Y/%m/%d %H:%M') %></td>
     </tr>
     <tr>
       <th>更新日時</th>
-      <td><%= @post.updated_at %></td>
+      <td><%= @post.updated_at.strftime('%Y/%m/%d %H:%M') %></td>
     </tr>
     <tr>
       <th>投稿者</th>
