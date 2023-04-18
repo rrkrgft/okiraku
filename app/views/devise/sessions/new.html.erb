@@ -27,5 +27,6 @@
 <div class="border-top border-bottom mb-3 border-3">
 <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post, class: "my-3 btn btn-outline-dark" %>
 <%= link_to 'ゲストログイン（管理者閲覧用）', users_guest_admin_sign_in_path, method: :post, class: "my-3 btn btn-outline-secondary" %>
+<%= link_to 'ゲストログイン（分析確認用）', users_guest_analysis_sign_in_path, method: :post, class: "my-3 btn btn-outline-primary" %>
 </div>
 <%= render "devise/shared/links" %>

@@ -1,5 +1,6 @@
 class LabelsController < ApplicationController
   before_action :authenticate_user!
+  # before_action :check_user_analysis, only: [:new, :create, :edit, :update, :destroy]
 
   def new
     @label = Label.new

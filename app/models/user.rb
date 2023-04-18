@@ -8,10 +8,9 @@ class User < ApplicationRecord
   validates :name, presence: true
 
   has_many :favorites, dependent: :destroy
-  has_many :posts, through: :favorites, dependent: :destroy
-  has_many :posts
-  has_many :details, through: :posts
-  has_many :labels
+  has_many :posts, dependent: :destroy
+  has_many :details, through: :posts, dependent: :destroy
+  has_many :labels, dependent: :destroy
 
   private
   def make_labels
@@ -43,8 +42,15 @@ class User < ApplicationRecord
   def self.guest_admin
     find_or_create_by!(email: 'guest-admin@example.com') do |user|
       user.password = SecureRandom.urlsafe_base64
-      user.name = "ゲスト"
+      user.name = "ゲスト（管理者）"
       user.admin = true
+    end
+  end
+
+  def self.guest_analysis
+    find_or_create_by!(email: 'guest-analysis@example.com') do |user|
+      user.password = SecureRandom.urlsafe_base64
+      user.name = "ゲスト（分析確認用）"
     end
   end
 end

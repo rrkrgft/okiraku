@@ -1,5 +1,6 @@
 class FavoritesController < ApplicationController
   before_action :authenticate_user!
+  # before_action :check_user_analysis, only: [:new, :create, :edit, :update, :destroy]
 
   def create
     Favorite.create(user_id: current_user.id, post_id: params[:format])
