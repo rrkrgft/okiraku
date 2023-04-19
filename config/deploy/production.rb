@@ -4,7 +4,7 @@ set :ssh_options, keys: '/Users/isajikuniyuki/.ssh/id_rsa'
 credentials = Aws::Credentials.new(ENV['AWS_ACCESS_KEY_ID'], ENV['AWS_SECRET_ACCESS_KEY'])
 Aws::Rails.add_action_mailer_delivery_method(
   :ses, 
-  credentials:, # Ruby 3.1の文法
+  credentials: creds, # Ruby 3.1の文法
   region: 'ap-northeast-1'
 )
 
