@@ -66,3 +66,4 @@ gem 'unicorn' # アプリケーションサーバのunicorn
 gem 'faker'
 gem 'natto'
 gem 'ruby-openai'
+gem 'aws-sdk-rails'

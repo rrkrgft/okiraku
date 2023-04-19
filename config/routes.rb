@@ -13,4 +13,5 @@ Rails.application.routes.draw do
   post '/users/guest_sign_in', to: 'users#guest_sign_in'
   post '/users/guest_admin_sign_in', to: 'users#guest_admin_sign_in'
   post '/users/guest_analysis_sign_in', to: 'users#guest_analysis_sign_in'
+  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 end
