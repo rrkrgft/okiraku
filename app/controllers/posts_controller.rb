@@ -27,7 +27,7 @@ class PostsController < ApplicationController
     if params[:q]
       @posts = @q.result
     else
-      @posts = Post.includes(:user)
+      @posts = Post.includes(:user).order(created_at: "DESC")
     end
     @posts = @posts.where(draft: false).page(params[:page]).per(10)
   end
