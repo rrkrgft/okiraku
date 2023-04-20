@@ -19,7 +19,7 @@
         <th><%= sort_link(@q, :title, "タイトル") %></th>
         <th>画像</th>
         <th><%= sort_link(@q, :score, "嬉しい度", default_order: :desc ) %></th>
-        <th><%= sort_link(@q, :user.name, "投稿者") %></th>
+        <th><%= sort_link(@q, :user_id, "投稿者") %></th>
         <th><%= sort_link(@q, :created_at, "投稿日", default_order: :desc ) %></th>
         <th></th>
       </tr>

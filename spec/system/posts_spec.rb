@@ -83,7 +83,7 @@ RSpec.describe "投稿機能", type: :system do
         find('#task_name').set("edit_title")
         click_on "登録"
         expect(page).to have_content 'edit_title'
-        expect(page).not_to have_content 'title_post1'
+        expect(page).not_to have_content 'title_post2'
       end
     end
     context '編集をして下書き保存する場合' do
@@ -99,13 +99,13 @@ RSpec.describe "投稿機能", type: :system do
       end
     end
     context '投稿を削除する場合' do
-      it '削除されなくなる' do
+      it '削除され投稿がなくなる' do
         accept_alert do
           click_on "削除", match: :first
         end
-        expect(page).to have_content 'title_post2'
+        expect(page).to have_content 'title_post1'
         expect(page).to have_content '投稿を削除しました'
-        expect(page).not_to have_content 'title_post1'
+        expect(page).not_to have_content 'title_post2'
       end
     end
   end
