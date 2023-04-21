@@ -29,7 +29,7 @@
         <tr>
           <td><%= link_to p.title, post_path(p.id),class: "task_row" %></td>
           <td><% if p.images.attached? %>
-            <% p.images.each do |image| %>
+            <% p.images.first(3).each do |image| %>
               <%= image_tag image.variant( resize: "100x50" ) %>
             <% end %>
           <% end %></td>
