@@ -30,7 +30,7 @@
   <% end %>
   <div class="form-group mt-3">
     <%= post.label :score, title: "楽しい（嬉しい）と感じた度合いを％で選んでください" %>：
-    <%= post.range_field :score , in: 0..100, class: "form-range w-25 h-25", id: "range" %>
+    <%= post.range_field :score , in: 0..100, step: 5, class: "form-range w-25 h-25", id: "range" %>
     <span id="value"><%= @post.score || 50 %></span>％
   </div>
   <div class="form-group my-3">
