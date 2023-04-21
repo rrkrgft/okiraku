@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
-  # before_action :check_user_analysis, only: [:new, :create, :edit, :update, :destroy]
+  before_action :check_user_analysis, only: [:new, :create, :edit, :update, :destroy]
 
   def new
     @post = Post.new
