@@ -22,6 +22,9 @@
   `rails db:migrate`   
   `bundle install`  
   `yarn install`  
+  `brew update`  
+  `brew install mecab mecab-ipadic`  
+  `gem install mecab`  
   `rails s`  
 
 ## カタログ設計、テーブル定義書、ワイヤーフレームの共有リンク
